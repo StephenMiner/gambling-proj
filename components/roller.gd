@@ -15,7 +15,7 @@ var labels : Array[String];
 var lTime : int; # Used to externally track accumulated time
 
 
-@export var duration : int = 4; # How many seconds the animation should play for
+@export var duration : int = 2; # How many seconds the animation should play for
 const revealDelay : int = 2;
 const COST : int = 250;
 var timeElapsed : float;
@@ -24,7 +24,7 @@ var frame : int;
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	probabilities = {Outcomes.NEAR: 0.75, Outcomes.MISS: 0.15, Outcomes.HIT: 0.5};
+	probabilities = {Outcomes.NEAR: 75, Outcomes.MISS: 15, Outcomes.HIT: 5}; #defaults
 	ordering = [Outcomes.HIT, Outcomes.MISS, Outcomes.NEAR];
 	processing = false;
 	lever = get_parent().get_node("Handle");
@@ -47,10 +47,12 @@ func pullLever() -> void:
 	if (Root.money < Root.cost):
 		#probably very time inneficient, but idk if I can cache signal "vars"
 		var deny : ColorRect = get_node("ColorRect");
-		deny.broke.emit();
+		deny.broke.emit(); # Perhaps some redundancy here...
 		return;
 	processing = true;
 	Root.money -= Root.cost;
+	var coin : Sprite2D = get_parent().get_node("Sprite2D");
+	coin.money_change.emit(); # May want to hook into this later.
 	print(10);
 	lever.use = false;
 	pass;
@@ -85,10 +87,27 @@ func displayOutcome(outcome: Outcomes) -> void:
 			panels[displayOrder[2]].text = pool[0];
 			pass;
 	
-func rollResult() -> void:
-	var roll : int = randi() % 1000;
-	for key in probabilities:
-		var chance : float = probabilities[key];
+func rollResult() -> Outcomes:
+	var roll : int = randi() % gen_sum(probabilities.values());
+	var weight_map : Dictionary[int, Array] = chance_to_outcome();
+	var sorted_weights : Array[Outcomes] = sorted_outcomes();
+	print(Outcomes.find_key(sorted_weights[0]));
+	for outcome in sorted_weights:
+		var weight : int = probabilities[outcome];
+		print("Roll: " + str(roll));
+		roll -= weight;
+		if (roll < 1):
+			# Array[Outcomes]
+			var options : Array = weight_map[weight];
+			return options[randi() % len(options)];
+	return Outcomes.MISS # This case should never come up!!
+
+func gen_sum(ints : Array) -> int: # I saw there is lambda but the impl is ugly as hell	
+	var sum : int = 0;
+	#Array[ints]
+	for item in ints:
+		sum += item;
+	return sum;
 	
 func playAnimation() -> int:	
 	if  timeElapsed > 0.025:
@@ -105,15 +124,34 @@ func rand_symb() -> String:
 	return labels[randi() % len(labels)];
 
 
+# The reason why i maintain this is because when rolling weights
+# I don't like that I can get a 49, but if two items have a weight of 50
+# one is always chosen, and the next one is on 51+.
+# This way I can randomize the results whenever the 50 weight item would be chosen
+func chance_to_outcome()->Dictionary[int, Array]:
+	# Dictionary[int, Array[Outcomes]] unsupported??? The left has gone INSANE
+	var outcome_map : Dictionary[int, Array] = {};
+	for key in probabilities:
+		var weight : int = probabilities[key];
+		if weight in outcome_map:
+			outcome_map[weight].append(key);
+		else: outcome_map[weight] = [key];
+	return outcome_map;
 
-
-
+#Sorted from least to greatest
+func sorted_outcomes()->Array[Outcomes]:
+	var sorted : Array[Outcomes] = [];
+	for key in probabilities:
+		sorted.append(key);
+	sorted.sort();
+	sorted.reverse();
+	return sorted;
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	if (processing and lTime > duration / 0.025): # Function plays once every 0.025 seconds. 
 		processing = false;
 		lTime = 0;
-		var outcome : Outcomes = ordering[randi() % 3];
+		var outcome : Outcomes = rollResult();
 		print(Outcomes.find_key(outcome));
 		displayOutcome(outcome);
 	if processing:
