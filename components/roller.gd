@@ -15,7 +15,7 @@ var labels : Array[String];
 var lTime : int; # Used to externally track accumulated time
 
 
-@export var duration : int = 2; # How many seconds the animation should play for
+@export var duration : int = 4; # How many seconds the animation should play for
 const revealDelay : int = 2;
 const COST : int = 250;
 var timeElapsed : float;
@@ -96,13 +96,17 @@ func playAnimation() -> int:
 			var label : Label = panels[i];
 			label.text = rand_symb();
 			move_child(label, get_node("Polygon2D").get_index());
-		timeElapsed = 0;
+		timeElapsed = timeElapsed - 0.025;
 		return 1;
 	return 0;
 	
 
 func rand_symb() -> String:
 	return labels[randi() % len(labels)];
+
+
+
+
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
