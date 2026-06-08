@@ -1,0 +1,105 @@
+[gd_scene format=3 uid="uid://4pqund3nukl7"]
+
+[ext_resource type="Script" uid="uid://b4bwtvyqeij14" path="res://components/root.gd" id="1_q6r6c"]
+[ext_resource type="Script" uid="uid://d4gcx6eixxv88" path="res://components/area_2d.gd" id="2_epypp"]
+[ext_resource type="Script" uid="uid://dg1pudnlepgdg" path="res://components/roller.gd" id="3_epypp"]
+[ext_resource type="Script" uid="uid://bo5hapqssybn3" path="res://components/tinter.gd" id="4_kdubu"]
+[ext_resource type="Script" uid="uid://bcpjwici21hy" path="res://components/coin.gd" id="5_q6r6c"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_q6r6c"]
+size = Vector2(31.352524, 22.333328)
+
+[sub_resource type="GDScript" id="GDScript_kdubu"]
+script/source = "extends CollisionShape2D
+
+var spinning : bool;
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	spinning = false;
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	if Input.is_action_just_pressed(\"ui_select\"):
+		print(2);
+	pass
+"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0e48y"]
+size = Vector2(332.5, 607)
+
+[node name="Node2D" type="Node2D" unique_id=1494426788]
+script = ExtResource("1_q6r6c")
+
+[node name="Handle" type="Area2D" parent="." unique_id=2029358317]
+position = Vector2(266, 128)
+script = ExtResource("2_epypp")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Handle" unique_id=1148572763]
+position = Vector2(42.942444, -5.679062)
+scale = Vector2(6, 6)
+shape = SubResource("RectangleShape2D_q6r6c")
+script = SubResource("GDScript_kdubu")
+
+[node name="Polygon2D" type="Polygon2D" parent="Handle" unique_id=1586622241]
+z_index = 1
+position = Vector2(-1222.9614, -274.67905)
+scale = Vector2(1.8076922, 1.0716052)
+polygon = PackedVector2Array(645, 205, 749, 211, 747, 285, 651, 295)
+
+[node name="Rail" type="Area2D" parent="." unique_id=1294633678]
+position = Vector2(288, 402)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Rail" unique_id=2009195340]
+position = Vector2(3, -72.5)
+shape = SubResource("RectangleShape2D_0e48y")
+
+[node name="Polygon2D" type="Polygon2D" parent="Rail" unique_id=979562397]
+position = Vector2(-76, -82)
+color = Color(0.009678757, 0.001674616, 0, 1)
+polygon = PackedVector2Array(-81, -282, -84, 309, 89, 307, 249, 304, 247, -294)
+
+[node name="Area2D" type="Area2D" parent="." unique_id=154913400]
+position = Vector2(580, 175)
+script = ExtResource("3_epypp")
+
+[node name="Polygon2D" type="Polygon2D" parent="Area2D" unique_id=2126756759]
+z_index = -1
+position = Vector2(0, -1)
+polygon = PackedVector2Array(-43.5, -18.5, 42, -18.5, 41.5, 30.5, -43.5, 30)
+
+[node name="Panel1" type="Label" parent="Area2D" unique_id=1762078987]
+offset_left = -40.0
+offset_top = -6.0
+offset_right = -25.0
+offset_bottom = 18.0
+metadata/_edit_use_anchors_ = true
+
+[node name="Panel2" type="Label" parent="Area2D" unique_id=763452804]
+offset_left = -23.0
+offset_top = -5.0
+offset_right = 17.0
+offset_bottom = 18.0
+metadata/_edit_use_anchors_ = true
+
+[node name="Panel3" type="Label" parent="Area2D" unique_id=518050730]
+offset_left = 20.0
+offset_top = -5.0
+offset_right = 60.0
+offset_bottom = 18.0
+metadata/_edit_use_anchors_ = true
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1030411001]
+z_index = 2
+offset_right = 1152.0
+offset_bottom = 653.0
+script = ExtResource("4_kdubu")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1571639274]
+script = ExtResource("5_q6r6c")
+
+[node name="Label" type="Label" parent="Sprite2D" unique_id=220010014]
+offset_right = 1.0
+offset_bottom = 23.0
