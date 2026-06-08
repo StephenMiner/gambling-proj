@@ -13,8 +13,8 @@ func _ready() -> void:
 	#self.apply_scale(Vector2(0.5,0.5));
 	var screen_size : Vector2 = get_viewport_rect().size;
 	var y : int = screen_size.y / 8;
-	var cx : int = 7 * screen_size.x / 8;
-	var lx : int = 6.2 * screen_size.x / 8;
+	var cx : int = screen_size.x / 8;
+	var lx : int = 1.4 * screen_size.x / 8;
 	print(lx);
 	self.position = Vector2(cx,y);
 	self.label.global_position= Vector2(lx, y);
