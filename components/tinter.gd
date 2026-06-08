@@ -37,7 +37,8 @@ func pulse_colors() -> void:
 		var val : float = r / 255.0;
 		var alpha : float = 0.5 if sign else 0.7;
 		self.set_color(Color(val, 0, 0, alpha));
-		
+	
+
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
