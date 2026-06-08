@@ -1,6 +1,6 @@
 extends Sprite2D
 
-
+signal money_change;
 var label : Label;
 
 func _ready() -> void:
