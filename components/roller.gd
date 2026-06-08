@@ -43,7 +43,14 @@ func _ready() -> void:
 
 func pullLever() -> void:
 	if processing: return;
+	
+	if (Root.money < Root.cost):
+		#probably very time inneficient, but idk if I can cache signal "vars"
+		var deny : ColorRect = get_node("ColorRect");
+		deny.broke.emit();
+		return;
 	processing = true;
+	Root.money -= Root.cost;
 	print(10);
 	lever.use = false;
 	pass;
