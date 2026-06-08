@@ -7,7 +7,7 @@ money
   
 roller\.gd:  
 I have code in mind I want to write to implement the probabilities (and
-        allow them to be dynamic), just need to write it.  
+		allow them to be dynamic), just need to write it.  
 
 The stuff already there just dictates the actual slot machine
 functionality. It merges both the graphical functions and logical
