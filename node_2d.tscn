@@ -1,31 +1,14 @@
 [gd_scene format=3 uid="uid://4pqund3nukl7"]
 
 [ext_resource type="Script" uid="uid://b4bwtvyqeij14" path="res://components/root.gd" id="1_q6r6c"]
-[ext_resource type="Script" uid="uid://d4gcx6eixxv88" path="res://components/area_2d.gd" id="2_epypp"]
+[ext_resource type="Script" uid="uid://bnn33j1n2ngrw" path="res://components/lever.gd" id="2_q6r6c"]
 [ext_resource type="Script" uid="uid://dg1pudnlepgdg" path="res://components/roller.gd" id="3_epypp"]
+[ext_resource type="Script" uid="uid://d3j7n3gnr8fo6" path="res://components/service_denial.gd" id="3_kdubu"]
 [ext_resource type="Script" uid="uid://bo5hapqssybn3" path="res://components/tinter.gd" id="4_kdubu"]
 [ext_resource type="Script" uid="uid://bcpjwici21hy" path="res://components/coin.gd" id="5_q6r6c"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_q6r6c"]
 size = Vector2(31.352524, 22.333328)
-
-[sub_resource type="GDScript" id="GDScript_kdubu"]
-script/source = "extends CollisionShape2D
-
-var spinning : bool;
-
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	spinning = false;
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	if Input.is_action_just_pressed(\"ui_select\"):
-		print(2);
-	pass
-"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0e48y"]
 size = Vector2(332.5, 607)
@@ -35,13 +18,12 @@ script = ExtResource("1_q6r6c")
 
 [node name="Handle" type="Area2D" parent="." unique_id=2029358317]
 position = Vector2(266, 128)
-script = ExtResource("2_epypp")
+script = ExtResource("2_q6r6c")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Handle" unique_id=1148572763]
 position = Vector2(42.942444, -5.679062)
 scale = Vector2(6, 6)
 shape = SubResource("RectangleShape2D_q6r6c")
-script = SubResource("GDScript_kdubu")
 
 [node name="Polygon2D" type="Polygon2D" parent="Handle" unique_id=1586622241]
 z_index = 1
@@ -91,6 +73,14 @@ offset_right = 60.0
 offset_bottom = 18.0
 metadata/_edit_use_anchors_ = true
 
+[node name="ColorRect" type="ColorRect" parent="Area2D" unique_id=2091917271]
+z_index = 4
+offset_left = -314.0
+offset_top = -47.0
+offset_right = -274.0
+offset_bottom = -7.0
+script = ExtResource("3_kdubu")
+
 [node name="ColorRect" type="ColorRect" parent="." unique_id=1030411001]
 z_index = 2
 offset_right = 1152.0
@@ -98,6 +88,7 @@ offset_bottom = 653.0
 script = ExtResource("4_kdubu")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1571639274]
+z_index = 10
 script = ExtResource("5_q6r6c")
 
 [node name="Label" type="Label" parent="Sprite2D" unique_id=220010014]
