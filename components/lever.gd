@@ -21,6 +21,7 @@ func _ready() -> void:
 	pass; # Replace with function body.
 
 func _input(event: InputEvent) -> void:
+	if not use: return;
 	if mouseInside:
 		if Input.is_action_pressed("leftClick"):
 			var y : float = get_global_mouse_position().y;
