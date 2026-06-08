@@ -15,7 +15,7 @@ var labels : Array[String];
 var lTime : int; # Used to externally track accumulated time
 
 
-const duration : int = 5; # How many seconds the animation should play for
+@export var duration : int = 2; # How many seconds the animation should play for
 const revealDelay : int = 2;
 const COST : int = 250;
 var timeElapsed : float;
