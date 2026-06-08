@@ -17,7 +17,7 @@ size = Vector2(332.5, 607)
 script = ExtResource("1_q6r6c")
 
 [node name="Handle" type="Area2D" parent="." unique_id=2029358317]
-position = Vector2(266, 128)
+position = Vector2(940, 138)
 script = ExtResource("2_q6r6c")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Handle" unique_id=1148572763]
@@ -32,7 +32,7 @@ scale = Vector2(1.8076922, 1.0716052)
 polygon = PackedVector2Array(645, 205, 749, 211, 747, 285, 651, 295)
 
 [node name="Rail" type="Area2D" parent="." unique_id=1294633678]
-position = Vector2(288, 402)
+position = Vector2(962, 412)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Rail" unique_id=2009195340]
 position = Vector2(3, -72.5)
@@ -74,6 +74,7 @@ offset_bottom = 18.0
 metadata/_edit_use_anchors_ = true
 
 [node name="ColorRect" type="ColorRect" parent="Area2D" unique_id=2091917271]
+visible = false
 z_index = 4
 offset_left = -314.0
 offset_top = -47.0
@@ -82,6 +83,7 @@ offset_bottom = -7.0
 script = ExtResource("3_kdubu")
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=1030411001]
+visible = false
 z_index = 2
 offset_right = 1152.0
 offset_bottom = 653.0
