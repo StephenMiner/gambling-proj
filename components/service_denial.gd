@@ -24,7 +24,6 @@ func _ready() -> void:
 
 
 func start_play()->void:
-	print(99);
 	if (Root.money >= Root.cost): return;
 	if playing: return;
 	playing = true;
@@ -34,7 +33,7 @@ func start_play()->void:
 func play_anim()->void:
 
 	if time > 0.25:
-		time = 0;
+		time = time - 0.25;
 		if alpha < 0:
 			playing = false;
 			return;

@@ -5,9 +5,13 @@ enum Outcomes {NEAR, MISS, HIT};
 var probabilities : Dictionary;
 var ordering : Array[Outcomes];
 
-var processing : bool;
+var processing : bool; # true if we are actively rolling
+var animating : bool; # true if we are playing the animation to show the outcome
 var lever : Area2D;
 #var label : Label;
+
+var displayOrder : Array;
+var unlocked_slots : Array; #unused
 
 var panels : Array[Label];
 var labels : Array[String];
@@ -16,8 +20,8 @@ var lTime : int; # Used to externally track accumulated time
 
 
 @export var duration : int = 2; # How many seconds the animation should play for
-const revealDelay : int = 2;
-const COST : int = 250;
+@export var revealDelay : float = 0.5;
+
 var timeElapsed : float;
 var frame : int;
 
@@ -59,7 +63,7 @@ func pullLever() -> void:
 	
 
 func displayOutcome(outcome: Outcomes) -> void:
-	var displayOrder : Array;
+	
 	var diff : int = randi() % 3;
 	var diff1 : int = randi() % 3;
 	var diff2 : int = randi() % 3;
@@ -91,7 +95,6 @@ func rollResult() -> Outcomes:
 	var roll : int = randi() % gen_sum(probabilities.values());
 	var weight_map : Dictionary[int, Array] = chance_to_outcome();
 	var sorted_weights : Array[Outcomes] = sorted_outcomes();
-	print(Outcomes.find_key(sorted_weights[0]));
 	for outcome in sorted_weights:
 		var weight : int = probabilities[outcome];
 		print("Roll: " + str(roll));
@@ -109,7 +112,7 @@ func gen_sum(ints : Array) -> int: # I saw there is lambda but the impl is ugly 
 		sum += item;
 	return sum;
 	
-func playAnimation() -> int:	
+func playRollingAnimation() -> int:	
 	if  timeElapsed > 0.025:
 		for i in range(3):
 			var label : Label = panels[i];
@@ -118,7 +121,9 @@ func playAnimation() -> int:
 		timeElapsed = timeElapsed - 0.025;
 		return 1;
 	return 0;
-	
+
+func playFinalAnimation() -> void:
+	pass; # May not do anything with this;
 
 func rand_symb() -> String:
 	return labels[randi() % len(labels)];
@@ -151,12 +156,15 @@ func _process(delta: float) -> void:
 	if (processing and lTime > duration / 0.025): # Function plays once every 0.025 seconds. 
 		processing = false;
 		lTime = 0;
-		var outcome : Outcomes = rollResult();
+		timeElapsed = 0;
+		var outcome : Outcomes = rollResult(); #sets displayOrder
+		unlocked_slots = range(len(displayOrder));
+		animating = true;
 		print(Outcomes.find_key(outcome));
 		displayOutcome(outcome);
 	if processing:
 		lever.use = false;
-		lTime += playAnimation();
+		lTime += playRollingAnimation();
 		timeElapsed += delta; # floating point calculation be damned
 		
 	pass
