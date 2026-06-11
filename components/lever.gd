@@ -33,18 +33,20 @@ func _input(event: InputEvent) -> void:
 			if y <= originalY - 1: 
 				return;
 			if y >= maxY:
+				position.y = maxY;
+				
 				if use:
 					lever_pulled.emit();
 					time_elapsed = 0;
-				print(4);
 				return;
+				
 			position.y = y;
 func leave_area(area: Area2D)->void:
 	pass;
 	
 
 func controlling() -> bool:
-	return mouseInside and Input.is_action_pressed("leftClick");
+	return mouseInside and Input.is_action_pressed("leftClick") and use;
 
 func _mouse_enter() -> void:
 	mouseInside = true;
@@ -52,7 +54,7 @@ func _mouse_exit() -> void:
 	mouseInside = false;
 	
 func calc_needed_velocity() -> float:
-	var dt : float = roller.duration - time_elapsed;
+	var dt : float = abs(roller.duration - time_elapsed);
 	var dy : float = originalY - position.y; # should be negative which is good (up)
 	return dy / dt;
 
@@ -63,12 +65,17 @@ func calc_needed_velocity() -> float:
 func _process(delta: float) -> void:
 	if not controlling():
 		vy = calc_needed_velocity();
+		print(time_elapsed)
 	if position.y + (vy*delta) <= originalY:
 		position.y = originalY;
 		vy = 0;
 		use = true;
 	if not use:
 		time_elapsed += delta;
-	position.y += vy * delta;
+	if (position.y > maxY):
+		position.y = maxY;
+	elif (position.y < originalY):
+		position.y = originalY;
+	else: position.y += vy * delta;
 	
 	pass;
