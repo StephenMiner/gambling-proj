@@ -16,6 +16,7 @@ func _ready() -> void:
 	var coin = get_parent().get_node("Sprite2D");
 	coin.money_change.connect(money_check);
 	self.owner.pay_bld.connect(blood_check);
+	self.owner.roll_performed.connect(roll_check);
 	pass # Replace with function body.
 
 func money_check()->void:
@@ -38,13 +39,14 @@ func blood_check()->void:
 	state = States.HAPPY
 	update_image();
 
-func roll_check()->void:
+func roll_check(outcome : Machine.Outcomes)->void:
+	if (outcome != Machine.Outcomes.HIT): return;
 	time_elapsed = 0;
-	duration = 8;
+	duration = 6;
 	revert = true;
 	if (state == States.HAPPY):
 		return;
-	state == States.HAPPY;
+	state = States.HAPPY;
 	update_image();
 
 func update_image()->void:

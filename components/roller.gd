@@ -35,6 +35,7 @@ func _ready() -> void:
 	panels.resize(3);
 	for i in range(1,4):
 		var label : Label = get_node("Panel" + str(i));
+		label.add_theme_font_size_override("font_size", 32)
 		label.add_theme_color_override("font_color", Color.BLACK);
 		panels[i-1] = label;
 	timeElapsed = 0;
@@ -163,6 +164,7 @@ func _process(delta: float) -> void:
 		unlocked_slots = range(len(displayOrder));
 		animating = true;
 		print(Outcomes.find_key(outcome));
+		self.owner.roll_performed.emit(outcome);
 		if (outcome == Outcomes.HIT):
 			Root.money += Root.payout;
 			var coin : Sprite2D = get_parent().get_node("Sprite2D");

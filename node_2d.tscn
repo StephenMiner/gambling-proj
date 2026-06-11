@@ -8,9 +8,9 @@
 [ext_resource type="Script" uid="uid://bm3fkg33j7vj3" path="res://components/coin.gd" id="5_q6r6c"]
 [ext_resource type="Texture2D" uid="uid://douopr55xpgdd" path="res://icons/ouch.png" id="7_d21ai"]
 [ext_resource type="Script" uid="uid://dncmj38juf1qt" path="res://components/ouch_button.gd" id="7_rj586"]
-[ext_resource type="Script" uid="uid://76b1hwok33lq" path="res://end_screen.gd" id="9_4d7sh"]
+[ext_resource type="Script" uid="uid://7m6qucrjhxtv" path="res://components/end_screen.gd" id="9_hqns4"]
 [ext_resource type="Texture2D" uid="uid://cwko5uni3wbbk" path="res://icons/pretty_angry.png" id="10_ir8iy"]
-[ext_resource type="Script" uid="uid://blugu6oeu7dqd" path="res://background.gd" id="11_hqns4"]
+[ext_resource type="Script" uid="uid://dl5cmaqcjlfe4" path="res://components/background.gd" id="11_x0ka3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_q6r6c"]
 size = Vector2(18.333345, 6.666666)
@@ -57,37 +57,36 @@ position = Vector2(580, 175)
 script = ExtResource("3_epypp")
 
 [node name="Polygon2D" type="Polygon2D" parent="Area2D" unique_id=2126756759]
+visible = false
 z_index = -1
 position = Vector2(0, -1)
 polygon = PackedVector2Array(-43.5, -18.5, 42, -18.5, 41.5, 30.5, -43.5, 30)
 
 [node name="Panel1" type="Label" parent="Area2D" unique_id=1762078987]
-offset_left = -40.0
-offset_top = -6.0
-offset_right = -25.0
-offset_bottom = 18.0
-metadata/_edit_use_anchors_ = true
+offset_left = 3.9999847
+offset_top = 132.0
+offset_right = 18.999985
+offset_bottom = 156.0
 
 [node name="Panel2" type="Label" parent="Area2D" unique_id=763452804]
-offset_left = -23.0
-offset_top = -5.0
-offset_right = 17.0
-offset_bottom = 18.0
-metadata/_edit_use_anchors_ = true
+offset_left = 126.0
+offset_top = 135.0
+offset_right = 166.0
+offset_bottom = 158.0
 
 [node name="Panel3" type="Label" parent="Area2D" unique_id=518050730]
-offset_left = 20.0
-offset_top = -5.0
-offset_right = 60.0
-offset_bottom = 18.0
+offset_left = 269.0
+offset_top = 137.99998
+offset_right = 309.0
+offset_bottom = 160.99998
 metadata/_edit_use_anchors_ = true
 
 [node name="ColorRect" type="ColorRect" parent="Area2D" unique_id=2091917271]
 z_index = 4
-offset_left = -314.0
-offset_top = -47.0
-offset_right = -274.0
-offset_bottom = -7.0
+offset_left = -360.0
+offset_top = -26.0
+offset_right = -320.0
+offset_bottom = 14.0
 script = ExtResource("3_kdubu")
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=1030411001]
@@ -128,19 +127,22 @@ metadata/_edit_use_anchors_ = true
 
 [node name="EndScreen" type="ColorRect" parent="." unique_id=1080913745]
 z_index = 11
-offset_right = 40.0
-offset_bottom = 40.0
-script = ExtResource("9_4d7sh")
+offset_right = 47.0
+offset_bottom = 42.0
+script = ExtResource("9_hqns4")
+metadata/_edit_use_anchors_ = true
 
 [node name="Label" type="Label" parent="EndScreen" unique_id=625349012]
 z_index = 12
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 23.0
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.287
+offset_bottom = 11.52
 
 [node name="Background" type="Sprite2D" parent="." unique_id=1943634157]
 z_index = -4
 position = Vector2(575.75006, 325.87503)
 scale = Vector2(0.5986979, 0.5997685)
 texture = ExtResource("10_ir8iy")
-script = ExtResource("11_hqns4")
+script = ExtResource("11_x0ka3")

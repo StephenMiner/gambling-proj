@@ -5,7 +5,7 @@ var label : Label;
 
 func _ready() -> void:
 	self.label = get_node("Label");
-	self.label.add_theme_color_override("font_color", Color.BLACK);
+	self.label.add_theme_color_override("font_color", Color.NAVAJO_WHITE);
 	self.label.add_theme_font_size_override("font_size", 32)
 	
 	var icon : Resource = load("res://icons/splendor_coin.png");
