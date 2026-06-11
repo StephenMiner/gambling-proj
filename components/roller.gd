@@ -52,7 +52,7 @@ func pullLever() -> void:
 		#probably very time inneficient, but idk if I can cache signal "vars"
 		var deny : ColorRect = get_node("ColorRect");
 		deny.broke.emit(); # Perhaps some redundancy here...
-		return;
+		
 	processing = true;
 	Root.money -= Root.cost;
 	var coin : Sprite2D = get_parent().get_node("Sprite2D");
