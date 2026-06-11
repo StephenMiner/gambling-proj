@@ -65,7 +65,6 @@ func calc_needed_velocity() -> float:
 func _process(delta: float) -> void:
 	if not controlling():
 		vy = calc_needed_velocity();
-		print(time_elapsed)
 	if position.y + (vy*delta) <= originalY:
 		position.y = originalY;
 		vy = 0;
