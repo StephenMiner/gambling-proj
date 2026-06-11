@@ -3,7 +3,7 @@ extends Node2D
 
 signal pay_bld;
 
-static var money : int = 0;
+static var money : int = 100;
 static var cost : int = 10;
 static var payout : int = 90;
 static var blood_spilt : int = 0;

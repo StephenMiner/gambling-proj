@@ -40,7 +40,6 @@ func pulse_colors() -> void:
 		elif r >= max_r: # need to decrement r if we hit max_r
 			r = max_r;
 			sign = false;
-		print(max_alpha);
 		alpha = alpha + dAlpha if alpha_sign else alpha + -1 * dAlpha;
 		if (alpha > max_alpha):
 			alpha = max_alpha;
@@ -69,9 +68,8 @@ func _process(delta: float) -> void:
 		if (self.visible):
 			self.hide();
 		return;
+	pulse_colors();
 	if (!self.visible): self.show();
 	time += delta;
-	pulse_colors();
-	print(r);
 	
 	pass

@@ -7,6 +7,7 @@
 [ext_resource type="Script" uid="uid://ba77rjcl68cr5" path="res://components/tinter.gd" id="4_kdubu"]
 [ext_resource type="Script" uid="uid://bm3fkg33j7vj3" path="res://components/coin.gd" id="5_q6r6c"]
 [ext_resource type="Texture2D" uid="uid://douopr55xpgdd" path="res://icons/ouch.png" id="7_d21ai"]
+[ext_resource type="Script" uid="uid://b2y3qt0pgwxy3" path="res://ouch_button.gd" id="7_rj586"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_q6r6c"]
 size = Vector2(31.352524, 22.333328)
@@ -103,6 +104,7 @@ metadata/_edit_use_anchors_ = true
 
 [node name="OuchButton" type="Area2D" parent="." unique_id=1173716548]
 position = Vector2(553, 582)
+script = ExtResource("7_rj586")
 
 [node name="Sprite2D" type="Sprite2D" parent="OuchButton" unique_id=1181186181]
 position = Vector2(122.5, -50)
@@ -112,3 +114,9 @@ texture = ExtResource("7_d21ai")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="OuchButton" unique_id=655505558]
 position = Vector2(124.5, -22)
 shape = SubResource("RectangleShape2D_rj586")
+
+[node name="Label" type="Label" parent="OuchButton" unique_id=518960371]
+offset_left = 91.0
+offset_top = -75.0
+offset_right = 140.0
+offset_bottom = -46.0
