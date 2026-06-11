@@ -1,17 +1,21 @@
 [gd_scene format=3 uid="uid://4pqund3nukl7"]
 
-[ext_resource type="Script" uid="uid://b4bwtvyqeij14" path="res://components/root.gd" id="1_q6r6c"]
+[ext_resource type="Script" uid="uid://bqrtn8aemhkx5" path="res://components/root.gd" id="1_q6r6c"]
 [ext_resource type="Script" uid="uid://kt7vpak0gibu" path="res://components/lever.gd" id="2_q6r6c"]
 [ext_resource type="Script" uid="uid://kvvs1hs0wm5f" path="res://components/roller.gd" id="3_epypp"]
 [ext_resource type="Script" uid="uid://d3j7n3gnr8fo6" path="res://components/service_denial.gd" id="3_kdubu"]
-[ext_resource type="Script" uid="uid://bo5hapqssybn3" path="res://components/tinter.gd" id="4_kdubu"]
+[ext_resource type="Script" uid="uid://ba77rjcl68cr5" path="res://components/tinter.gd" id="4_kdubu"]
 [ext_resource type="Script" uid="uid://bm3fkg33j7vj3" path="res://components/coin.gd" id="5_q6r6c"]
+[ext_resource type="Texture2D" uid="uid://douopr55xpgdd" path="res://icons/ouch.png" id="7_d21ai"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_q6r6c"]
 size = Vector2(31.352524, 22.333328)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0e48y"]
 size = Vector2(332.5, 607)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rj586"]
+size = Vector2(265, 176)
 
 [node name="Node2D" type="Node2D" unique_id=1494426788]
 script = ExtResource("1_q6r6c")
@@ -82,6 +86,7 @@ offset_bottom = -7.0
 script = ExtResource("3_kdubu")
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=1030411001]
+visible = false
 z_index = 2
 offset_right = 1152.0
 offset_bottom = 653.0
@@ -94,3 +99,16 @@ script = ExtResource("5_q6r6c")
 [node name="Label" type="Label" parent="Sprite2D" unique_id=220010014]
 offset_right = 1.0
 offset_bottom = 23.0
+metadata/_edit_use_anchors_ = true
+
+[node name="OuchButton" type="Area2D" parent="." unique_id=1173716548]
+position = Vector2(553, 582)
+
+[node name="Sprite2D" type="Sprite2D" parent="OuchButton" unique_id=1181186181]
+position = Vector2(122.5, -50)
+scale = Vector2(2.0546875, 1.828125)
+texture = ExtResource("7_d21ai")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="OuchButton" unique_id=655505558]
+position = Vector2(124.5, -22)
+shape = SubResource("RectangleShape2D_rj586")
