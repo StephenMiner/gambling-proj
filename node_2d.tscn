@@ -7,7 +7,7 @@
 [ext_resource type="Script" uid="uid://ba77rjcl68cr5" path="res://components/tinter.gd" id="4_kdubu"]
 [ext_resource type="Script" uid="uid://bm3fkg33j7vj3" path="res://components/coin.gd" id="5_q6r6c"]
 [ext_resource type="Texture2D" uid="uid://douopr55xpgdd" path="res://icons/ouch.png" id="7_d21ai"]
-[ext_resource type="Script" uid="uid://b2y3qt0pgwxy3" path="res://ouch_button.gd" id="7_rj586"]
+[ext_resource type="Script" uid="uid://dncmj38juf1qt" path="res://components/ouch_button.gd" id="7_rj586"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_q6r6c"]
 size = Vector2(31.352524, 22.333328)

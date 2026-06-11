@@ -1,5 +1,5 @@
 extends Area2D
-
+class_name Machine
 enum Outcomes {NEAR, MISS, HIT};
 
 var probabilities : Dictionary;
@@ -56,8 +56,7 @@ func pullLever() -> void:
 	processing = true;
 	Root.money -= Root.cost;
 	var coin : Sprite2D = get_parent().get_node("Sprite2D");
-	coin.money_change.emit(); # May want to hook into this later.
-	print(10);
+	coin.money_change.emit(); # May want to hook into this later;
 	lever.use = false;
 	pass;
 	
@@ -97,7 +96,7 @@ func rollResult() -> Outcomes:
 	var sorted_weights : Array[Outcomes] = sorted_outcomes();
 	for outcome in sorted_weights:
 		var weight : int = probabilities[outcome];
-		print("Roll: " + str(roll));
+		print("Roll: " + str(roll) + "," + Outcomes.find_key(outcome));
 		roll -= weight;
 		if (roll < 1):
 			# Array[Outcomes]
@@ -148,9 +147,12 @@ func sorted_outcomes()->Array[Outcomes]:
 	var sorted : Array[Outcomes] = [];
 	for key in probabilities:
 		sorted.append(key);
-	sorted.sort();
-	sorted.reverse();
+	sorted.sort_custom(sort_ascending);
+	#sorted.reverse();
 	return sorted;
+
+func sort_ascending(o1, o2) -> bool:
+	return probabilities[o1] < probabilities[o2];
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	if (processing and lTime > duration / 0.025): # Function plays once every 0.025 seconds. 
@@ -161,6 +163,10 @@ func _process(delta: float) -> void:
 		unlocked_slots = range(len(displayOrder));
 		animating = true;
 		print(Outcomes.find_key(outcome));
+		if (outcome == Outcomes.HIT):
+			Root.money += Root.payout;
+			var coin : Sprite2D = get_parent().get_node("Sprite2D");
+			coin.money_change.emit(); # May want to hook into this later;
 		displayOutcome(outcome);
 	if processing:
 		lever.use = false;

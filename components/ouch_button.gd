@@ -14,14 +14,23 @@ func _input(event: InputEvent) -> void:
 	if mouseInside and Input.is_action_pressed("leftClick"):
 		on_cooldown = true;
 		time_elapsed = 0;
+		if Root.blood_spilt + 1 > 20: return;
+		update_weights();
 		Root.blood_spilt+=1;
 		self.owner.pay_bld.emit();
+		
 		pass
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	label = get_node("Label");
 	pass # Replace with function body.
 
+
+func update_weights() -> void:
+	var roller : Area2D = get_parent().get_node("Area2D");
+	roller.probabilities[Machine.Outcomes.NEAR] -= 5; #ah well this is silly...
+	roller.probabilities[Machine.Outcomes.HIT] += 5;
+	print(roller.probabilities[Machine.Outcomes.HIT] )
 
 func _mouse_enter() -> void:
 	mouseInside = true;
