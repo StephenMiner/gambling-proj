@@ -8,12 +8,15 @@
 [ext_resource type="Script" uid="uid://bm3fkg33j7vj3" path="res://components/coin.gd" id="5_q6r6c"]
 [ext_resource type="Texture2D" uid="uid://douopr55xpgdd" path="res://icons/ouch.png" id="7_d21ai"]
 [ext_resource type="Script" uid="uid://dncmj38juf1qt" path="res://components/ouch_button.gd" id="7_rj586"]
+[ext_resource type="Script" uid="uid://76b1hwok33lq" path="res://end_screen.gd" id="9_4d7sh"]
+[ext_resource type="Texture2D" uid="uid://cwko5uni3wbbk" path="res://icons/pretty_angry.png" id="10_ir8iy"]
+[ext_resource type="Script" uid="uid://blugu6oeu7dqd" path="res://background.gd" id="11_hqns4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_q6r6c"]
-size = Vector2(31.352524, 22.333328)
+size = Vector2(18.333345, 6.666666)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0e48y"]
-size = Vector2(332.5, 607)
+size = Vector2(133.25, 607)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rj586"]
 size = Vector2(265, 176)
@@ -22,29 +25,30 @@ size = Vector2(265, 176)
 script = ExtResource("1_q6r6c")
 
 [node name="Handle" type="Area2D" parent="." unique_id=2029358317]
-position = Vector2(940, 138)
+position = Vector2(1074, 110)
 script = ExtResource("2_q6r6c")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Handle" unique_id=1148572763]
-position = Vector2(42.942444, -5.679062)
+position = Vector2(-2, 1.5258789e-05)
 scale = Vector2(6, 6)
 shape = SubResource("RectangleShape2D_q6r6c")
 
 [node name="Polygon2D" type="Polygon2D" parent="Handle" unique_id=1586622241]
 z_index = 1
-position = Vector2(-1222.9614, -274.67905)
-scale = Vector2(1.8076922, 1.0716052)
+position = Vector2(-619.57684, -85.34587)
+scale = Vector2(0.88461536, 0.33827263)
 polygon = PackedVector2Array(645, 205, 749, 211, 747, 285, 651, 295)
 
 [node name="Rail" type="Area2D" parent="." unique_id=1294633678]
 position = Vector2(962, 412)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Rail" unique_id=2009195340]
-position = Vector2(3, -72.5)
+position = Vector2(102.625, -72.5)
 shape = SubResource("RectangleShape2D_0e48y")
 
 [node name="Polygon2D" type="Polygon2D" parent="Rail" unique_id=979562397]
-position = Vector2(-76, -82)
+position = Vector2(68.31531, -82)
+scale = Vector2(0.4204204, 1)
 color = Color(0.009678757, 0.001674616, 0, 1)
 polygon = PackedVector2Array(-81, -282, -84, 309, 89, 307, 249, 304, 247, -294)
 
@@ -87,9 +91,9 @@ offset_bottom = -7.0
 script = ExtResource("3_kdubu")
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=1030411001]
-visible = false
 z_index = 2
-offset_right = 1152.0
+offset_top = 607.0
+offset_right = 33.0
 offset_bottom = 653.0
 script = ExtResource("4_kdubu")
 
@@ -120,3 +124,23 @@ offset_left = 91.0
 offset_top = -75.0
 offset_right = 140.0
 offset_bottom = -46.0
+metadata/_edit_use_anchors_ = true
+
+[node name="EndScreen" type="ColorRect" parent="." unique_id=1080913745]
+z_index = 11
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("9_4d7sh")
+
+[node name="Label" type="Label" parent="EndScreen" unique_id=625349012]
+z_index = 12
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="Background" type="Sprite2D" parent="." unique_id=1943634157]
+z_index = -4
+position = Vector2(575.75006, 325.87503)
+scale = Vector2(0.5986979, 0.5997685)
+texture = ExtResource("10_ir8iy")
+script = ExtResource("11_hqns4")
