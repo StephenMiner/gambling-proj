@@ -25,6 +25,7 @@ func _ready() -> void:
 	var screen_size : Vector2  = get_viewport().get_visible_rect().size;
 	self.size = screen_size;
 	self.position = (screen_size / 2) - (self.size / 2);
+	self.set_color(Color(min_r/255.0, 0, 0, alpha));
 	self.mouse_filter = Control.MOUSE_FILTER_IGNORE;
 	self.owner.pay_bld.connect(on_pay);
 	pass # Replace with function body.
