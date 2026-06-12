@@ -36,7 +36,7 @@ func _ready() -> void:
 	for i in range(1,4):
 		var label : Label = get_node("Panel" + str(i));
 		label.add_theme_font_override("font", Root.font);
-		label.add_theme_font_size_override("font_size", 50)
+		label.add_theme_font_size_override("font_size", 70)
 		label.add_theme_color_override("font_color", Color.BLACK);
 		panels[i-1] = label;
 	timeElapsed = 0;
