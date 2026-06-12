@@ -1,5 +1,7 @@
 Making this in VIM so dont mind the formatting  
- 
+
+No outside resources used.
+
 All assets were produced in house by group member sprout (anonymized since
         this is public) 
 
