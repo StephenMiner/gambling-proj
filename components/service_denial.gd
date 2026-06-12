@@ -17,7 +17,7 @@ func _ready() -> void:
 	self.mouse_filter = Control.MOUSE_FILTER_IGNORE;
 	self.set_color(Color(0.3, 0, 0.3,alpha));
 	
-	var coin : Sprite2D = get_parent().get_parent().get_node("Sprite2D");
+	var coin : Label = get_parent().get_parent().get_node("Label");
 	coin.money_change.connect(start_play);
 	broke.connect(start_play);
 	pass # Replace with function body.

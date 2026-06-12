@@ -13,6 +13,7 @@ var maxY: float;
 const maxVy : float = 500;
 var ldel : float;
 
+var image : Sprite2D;
 var time_elapsed : float;
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -23,6 +24,8 @@ func _ready() -> void:
 	maxY = originalY + 300;
 	time_elapsed = 0;
 	roller = get_parent().get_node("Area2D");
+	image = get_node("Sprite2D");
+	image.texture = load("res://icons/lever.png");
 	pass; # Replace with function body.
 
 func _input(event: InputEvent) -> void:

@@ -25,6 +25,9 @@ func _input(event: InputEvent) -> void:
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	label = get_node("Label");
+	label.add_theme_color_override("font_color", Color.BLACK);
+	label.add_theme_font_size_override("font_size", 25);
+	label.add_theme_font_override("font", Root.font);
 	pass # Replace with function body.
 
 
@@ -32,7 +35,7 @@ func update_weights() -> void:
 	var roller : Area2D = get_parent().get_node("Area2D");
 	roller.probabilities[Machine.Outcomes.NEAR] -= modulation; #ah well this is silly...
 	roller.probabilities[Machine.Outcomes.HIT] += modulation;
-	print(roller.probabilities[Machine.Outcomes.HIT] )
+	#print(roller.probabilities[Machine.Outcomes.HIT] )
 
 func _mouse_enter() -> void:
 	mouseInside = true;
@@ -41,7 +44,7 @@ func _mouse_exit() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	label.text = "Fingers Spent: " + str(Root.blood_spilt);
+	label.text = "Appendages Spent: " + str(Root.blood_spilt);
 	if on_cooldown:
 		time_elapsed += delta;
 		if time_elapsed >= cooldown:

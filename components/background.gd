@@ -13,7 +13,7 @@ func _ready() -> void:
 	default_state = States.NEUTRAL;
 	state = default_state;
 	update_image();
-	var coin = get_parent().get_node("Sprite2D");
+	var coin = get_parent().get_node("Label");
 	coin.money_change.connect(money_check);
 	self.owner.pay_bld.connect(blood_check);
 	self.owner.roll_performed.connect(roll_check);
@@ -55,7 +55,7 @@ func update_image()->void:
 	elif state == States.HAPPY:
 		self.texture = load("res://icons/pretty_happy.png");
 	elif state == States.MAD:
-		self.texture = load("res://icons/pretty_angry.png");
+		self.texture = load("res://icons/pretty_mad.png");
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:

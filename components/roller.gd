@@ -35,7 +35,8 @@ func _ready() -> void:
 	panels.resize(3);
 	for i in range(1,4):
 		var label : Label = get_node("Panel" + str(i));
-		label.add_theme_font_size_override("font_size", 32)
+		label.add_theme_font_override("font", Root.font);
+		label.add_theme_font_size_override("font_size", 50)
 		label.add_theme_color_override("font_color", Color.BLACK);
 		panels[i-1] = label;
 	timeElapsed = 0;
@@ -56,7 +57,7 @@ func pullLever() -> void:
 		
 	processing = true;
 	Root.money -= Root.cost;
-	var coin : Sprite2D = get_parent().get_node("Sprite2D");
+	var coin : Label = get_parent().get_node("Label");
 	coin.money_change.emit(); # May want to hook into this later;
 	lever.use = false;
 	pass;
@@ -97,7 +98,7 @@ func rollResult() -> Outcomes:
 	var sorted_weights : Array[Outcomes] = sorted_outcomes();
 	for outcome in sorted_weights:
 		var weight : int = probabilities[outcome];
-		print("Roll: " + str(roll) + "," + Outcomes.find_key(outcome));
+		#print("Roll: " + str(roll) + "," + Outcomes.find_key(outcome));
 		roll -= weight;
 		if (roll < 1):
 			# Array[Outcomes]
@@ -117,7 +118,6 @@ func playRollingAnimation() -> int:
 		for i in range(3):
 			var label : Label = panels[i];
 			label.text = rand_symb();
-			move_child(label, get_node("Polygon2D").get_index());
 		timeElapsed = timeElapsed - 0.025;
 		return 1;
 	return 0;
@@ -163,11 +163,11 @@ func _process(delta: float) -> void:
 		var outcome : Outcomes = rollResult(); #sets displayOrder
 		unlocked_slots = range(len(displayOrder));
 		animating = true;
-		print(Outcomes.find_key(outcome));
+		#print(Outcomes.find_key(outcome));
 		self.owner.roll_performed.emit(outcome);
 		if (outcome == Outcomes.HIT):
 			Root.money += Root.payout;
-			var coin : Sprite2D = get_parent().get_node("Sprite2D");
+			var coin : Label = get_parent().get_node("Label");
 			coin.money_change.emit(); # May want to hook into this later;
 		displayOutcome(outcome);
 	if processing:

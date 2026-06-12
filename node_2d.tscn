@@ -3,23 +3,20 @@
 [ext_resource type="Script" uid="uid://bqrtn8aemhkx5" path="res://components/root.gd" id="1_q6r6c"]
 [ext_resource type="Script" uid="uid://kt7vpak0gibu" path="res://components/lever.gd" id="2_q6r6c"]
 [ext_resource type="Script" uid="uid://kvvs1hs0wm5f" path="res://components/roller.gd" id="3_epypp"]
+[ext_resource type="Texture2D" uid="uid://c61cfrbh3aqkh" path="res://icons/lever.png" id="3_hqns4"]
 [ext_resource type="Script" uid="uid://d3j7n3gnr8fo6" path="res://components/service_denial.gd" id="3_kdubu"]
 [ext_resource type="Script" uid="uid://ba77rjcl68cr5" path="res://components/tinter.gd" id="4_kdubu"]
 [ext_resource type="Script" uid="uid://bm3fkg33j7vj3" path="res://components/coin.gd" id="5_q6r6c"]
-[ext_resource type="Texture2D" uid="uid://douopr55xpgdd" path="res://icons/ouch.png" id="7_d21ai"]
 [ext_resource type="Script" uid="uid://dncmj38juf1qt" path="res://components/ouch_button.gd" id="7_rj586"]
 [ext_resource type="Script" uid="uid://7m6qucrjhxtv" path="res://components/end_screen.gd" id="9_hqns4"]
-[ext_resource type="Texture2D" uid="uid://cwko5uni3wbbk" path="res://icons/pretty_angry.png" id="10_ir8iy"]
+[ext_resource type="Texture2D" uid="uid://dnf84nyhd376g" path="res://icons/pretty_mad.png" id="9_x0ka3"]
 [ext_resource type="Script" uid="uid://dl5cmaqcjlfe4" path="res://components/background.gd" id="11_x0ka3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_q6r6c"]
-size = Vector2(18.333345, 6.666666)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_0e48y"]
-size = Vector2(133.25, 607)
+size = Vector2(31.333344, 13.666667)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rj586"]
-size = Vector2(265, 176)
+size = Vector2(174, 97)
 
 [node name="Node2D" type="Node2D" unique_id=1494426788]
 script = ExtResource("1_q6r6c")
@@ -29,38 +26,16 @@ position = Vector2(1074, 110)
 script = ExtResource("2_q6r6c")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Handle" unique_id=1148572763]
-position = Vector2(-2, 1.5258789e-05)
+position = Vector2(-14, -11)
 scale = Vector2(6, 6)
 shape = SubResource("RectangleShape2D_q6r6c")
 
-[node name="Polygon2D" type="Polygon2D" parent="Handle" unique_id=1586622241]
-z_index = 1
-position = Vector2(-619.57684, -85.34587)
-scale = Vector2(0.88461536, 0.33827263)
-polygon = PackedVector2Array(645, 205, 749, 211, 747, 285, 651, 295)
-
-[node name="Rail" type="Area2D" parent="." unique_id=1294633678]
-position = Vector2(962, 412)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Rail" unique_id=2009195340]
-position = Vector2(102.625, -72.5)
-shape = SubResource("RectangleShape2D_0e48y")
-
-[node name="Polygon2D" type="Polygon2D" parent="Rail" unique_id=979562397]
-position = Vector2(68.31531, -82)
-scale = Vector2(0.4204204, 1)
-color = Color(0.009678757, 0.001674616, 0, 1)
-polygon = PackedVector2Array(-81, -282, -84, 309, 89, 307, 249, 304, 247, -294)
+[node name="Sprite2D" type="Sprite2D" parent="Handle" unique_id=1624135313]
+texture = ExtResource("3_hqns4")
 
 [node name="Area2D" type="Area2D" parent="." unique_id=154913400]
 position = Vector2(580, 175)
 script = ExtResource("3_epypp")
-
-[node name="Polygon2D" type="Polygon2D" parent="Area2D" unique_id=2126756759]
-visible = false
-z_index = -1
-position = Vector2(0, -1)
-polygon = PackedVector2Array(-43.5, -18.5, 42, -18.5, 41.5, 30.5, -43.5, 30)
 
 [node name="Panel1" type="Label" parent="Area2D" unique_id=1762078987]
 offset_left = 3.9999847
@@ -98,31 +73,20 @@ script = ExtResource("4_kdubu")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1571639274]
 z_index = 10
-script = ExtResource("5_q6r6c")
-
-[node name="Label" type="Label" parent="Sprite2D" unique_id=220010014]
-offset_right = 1.0
-offset_bottom = 23.0
-metadata/_edit_use_anchors_ = true
 
 [node name="OuchButton" type="Area2D" parent="." unique_id=1173716548]
-position = Vector2(553, 582)
+position = Vector2(746, 133)
 script = ExtResource("7_rj586")
 
-[node name="Sprite2D" type="Sprite2D" parent="OuchButton" unique_id=1181186181]
-position = Vector2(122.5, -50)
-scale = Vector2(2.0546875, 1.828125)
-texture = ExtResource("7_d21ai")
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="OuchButton" unique_id=655505558]
-position = Vector2(124.5, -22)
+position = Vector2(127, -2)
 shape = SubResource("RectangleShape2D_rj586")
 
 [node name="Label" type="Label" parent="OuchButton" unique_id=518960371]
-offset_left = 91.0
-offset_top = -75.0
-offset_right = 140.0
-offset_bottom = -46.0
+offset_left = -34.0
+offset_top = -67.0
+offset_right = 15.0
+offset_bottom = -38.0
 metadata/_edit_use_anchors_ = true
 
 [node name="EndScreen" type="ColorRect" parent="." unique_id=1080913745]
@@ -144,5 +108,13 @@ offset_bottom = 11.52
 z_index = -4
 position = Vector2(575.75006, 325.87503)
 scale = Vector2(0.5986979, 0.5997685)
-texture = ExtResource("10_ir8iy")
+texture = ExtResource("9_x0ka3")
 script = ExtResource("11_x0ka3")
+
+[node name="Label" type="Label" parent="." unique_id=220010014]
+offset_left = 709.0
+offset_top = 103.0
+offset_right = 710.0
+offset_bottom = 126.0
+script = ExtResource("5_q6r6c")
+metadata/_edit_use_anchors_ = true
